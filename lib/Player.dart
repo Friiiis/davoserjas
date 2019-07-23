@@ -1,3 +1,6 @@
+/**
+ * Player class represent the players of the game, and holds player specific information
+ */
 class Player {
   final String name;
   final int id;

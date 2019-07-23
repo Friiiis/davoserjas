@@ -1,6 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+/**
+ * ColorPicker contains all colors used in the app. Right now the app colors are fixed,
+ * but this class makes it easy to implement different color modes - like dark mode
+ */
 class ColorPicker {
 
   Color getPrimary() {

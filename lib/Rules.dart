@@ -1,3 +1,6 @@
+/**
+ * Rules contains the Davoserjas ruleset
+ */
 class Rules {
 
   int getPoints(int currentRound){

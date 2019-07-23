@@ -11,6 +11,9 @@ import 'package:davoserjas/ColorPicker.dart';
 
 import 'Leaderboard.dart';
 
+/**
+ * Contains the page for round six
+ */
 class RoundSixPage extends StatefulWidget {
   final Model model;
   final int currentRound;

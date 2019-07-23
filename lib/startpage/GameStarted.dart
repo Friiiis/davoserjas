@@ -8,9 +8,11 @@ import 'package:davoserjas/startpage/RoundSix.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:davoserjas/ColorPicker.dart';
-
 import 'Leaderboard.dart';
 
+/**
+ * GameStarted contains the pages that is shown in round 1-5 and 7. 
+ */
 class GameStartedPage extends StatefulWidget {
   final Model model;
   final int currentRound;
@@ -23,6 +25,16 @@ class GameStartedPage extends StatefulWidget {
       GameStartedPageState(model, currentRound);
 }
 
+/**
+ * @param pointsPerTick: the amount of points one tick will give on a specific round.
+ *  For instance, in round 2: pointsPerTick == 5, round 5: pointsPerTick == 50
+ * @param amountOfTicks: how many ticks is given in a specifik round.
+ *  For instance, in round 2: amountOfTicks == 26, round 5: pointsPerTick == 2
+ * @param tempPlayers: temporary List of players that will be used to assign
+ *  points to Model.players when the user navigates to the next round.
+ * @param roundSevenDropdownValues: is only used on round 7. Contains the dropdown
+ *  values (all player names) 
+ */
 class GameStartedPageState extends State<GameStartedPage> {
   final Model model;
   final int currentRound;
@@ -104,6 +116,11 @@ class GameStartedPageState extends State<GameStartedPage> {
     }
   }
 
+  /**
+   * Validates if all points has been given in a round. In the first 5 rounds,
+   * this returns true, if givenAmount == amountOfTicks. In round seven a check 
+   * is performed to check if all dropdowns contains different values.
+   */
   bool validateRound() {
     if (currentRound < 7) {
       return givenAmount == amountOfTicks;

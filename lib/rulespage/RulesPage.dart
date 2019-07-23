@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:davoserjas/ColorPicker.dart';
 import 'package:davoserjas/Header.dart';
 
+/**
+ * Page for displaying the rules of the game
+ * RulesPage is displayed in two different places in the app: on the mainpage's PageView,
+ * and when the game is on, and the user clicks the rules button. If the RulesPage is opened
+ * from an ongoing game, then the backbutton needs to be visible. This is toggled by the 
+ * param "needScaffoldAndBackButton".
+ */
 class RulesPage extends StatelessWidget {
   ColorPicker colorPicker = ColorPicker();
 

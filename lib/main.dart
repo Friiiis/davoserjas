@@ -31,6 +31,9 @@ class _MainPageState extends State<MainPage> {
 
   int currentIndex = 0;
 
+  /**
+   * is called when the user taps the bottomnavigation
+   */
   void bottomNavigationTapped(int index) {
     pageController.jumpToPage(index);
   }
@@ -43,8 +46,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    // testModel();
-
     return Scaffold(
       backgroundColor: colorPicker.getPrimary(),
       body: body(),
@@ -78,6 +79,9 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  /**
+   * returns the body of the outer Scaffold. Only contains a PageView with the different pages
+   */
   Widget body() {
     return PageView(
       physics: NeverScrollableScrollPhysics(),

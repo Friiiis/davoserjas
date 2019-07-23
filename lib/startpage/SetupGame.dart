@@ -6,28 +6,29 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:davoserjas/ColorPicker.dart';
 
+/**
+ * SetupGame is the page where the user chooses amount of players and player names.
+ */
 class SetupGamePage extends StatefulWidget {
   final Model model;
-  final PageController parentPageController;
 
-  const SetupGamePage({Key key, this.model, this.parentPageController})
+  const SetupGamePage({Key key, this.model,})
       : super(key: key);
 
   @override
   SetupGamePageState createState() =>
-      SetupGamePageState(model, parentPageController);
+      SetupGamePageState(model);
 }
 
 class SetupGamePageState extends State<SetupGamePage> {
   final Model model;
-  final PageController parentPageController;
 
   ColorPicker colorPicker = ColorPicker();
 
   int playerCount = 4;
   List<String> playerNames = List(5);
 
-  SetupGamePageState(this.model, this.parentPageController);
+  SetupGamePageState(this.model,);
 
   void incrementPlayerCount() {
     setState(() {
@@ -73,6 +74,14 @@ class SetupGamePageState extends State<SetupGamePage> {
     }
   }
 
+  /**
+   * If validateInputFields() returns true, startButtonTapped() returns a function, that
+   * navigates the user to the game's round 1 page. IF validateInputFields() is false,
+   * then startButtonTapped() returns null - this will control wether or not the "Start button"
+   * is disabled or not. 
+   * The function catches exceptions that is thrown by the Model, if the one or more player names
+   * is the same, and then shows the error to the user with a snackbar.
+   */
   startButtonTapped() {
     if (validateInputFields()) {
       return () {

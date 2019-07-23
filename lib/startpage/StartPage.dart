@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:davoserjas/ColorPicker.dart';
 import 'package:davoserjas/Header.dart';
 
+/**
+ * The front page of the game page
+ */
 class StartPage extends StatefulWidget {
   final Model model;
 
@@ -14,16 +17,15 @@ class StartPage extends StatefulWidget {
   StartPageState createState() => StartPageState(model);
 }
 
-class StartPageState extends State<StartPage> with AutomaticKeepAliveClientMixin {
+class StartPageState extends State<StartPage>
+    with AutomaticKeepAliveClientMixin {
   final Model model;
   ColorPicker colorPicker = ColorPicker();
-  PageController pageController;
 
   StartPageState(this.model);
 
   @override
   void initState() {
-    pageController = PageController(initialPage: 0);
     super.initState();
   }
 
@@ -38,15 +40,8 @@ class StartPageState extends State<StartPage> with AutomaticKeepAliveClientMixin
           showBackButton: false,
         ),
         Expanded(
-          child: PageView(
-            physics: NeverScrollableScrollPhysics(),
-            controller: pageController,
-            children: <Widget>[
-              SetupGamePage(
-                model: model,
-                parentPageController: pageController,
-              ),
-            ],
+          child: SetupGamePage(
+            model: model,
           ),
         ),
       ],

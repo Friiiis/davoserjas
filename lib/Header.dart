@@ -3,6 +3,12 @@ import 'package:davoserjas/startpage/Leaderboard.dart';
 import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 
+/**
+ * This class is used instead of the material design app bar as the header on every page
+ * @param showBackButton: boolean, if true then the header contains a back button that 
+ * on tab will pop the current route
+ */
+
 class Header extends StatelessWidget {
   final String title;
   final Color color;

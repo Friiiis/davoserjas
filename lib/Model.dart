@@ -1,5 +1,12 @@
 import 'Player.dart';
 
+/**
+ * The Model contains the data of the current session. Only one instance of Model is
+ * made, and it is passed to all pages in the app.
+ * @param player: list of PLayers of the current session
+ * @param roundData: a 2D list. Contains a list of players for every round in the game.
+ *  This means that every round's score is saved in this list.
+ */
 class Model {
   List<Player> players = List<Player>();
   List<List<Player>> roundData = List<List<Player>>();
@@ -25,6 +32,9 @@ class Model {
     }
   }
 
+  /**
+   * returns the points of the player with the given name
+   */
   int getPointsFromPlayerName(String name) {
     for (Player player in players) {
       if (name == player.getName()) {
@@ -38,19 +48,6 @@ class Model {
     players = List<Player>();
   }
 
-  String toString() {
-    String s1 = "Number of players: " + players.length.toString() + "\n";
-    for (Player player in players) {
-      s1 = s1 +
-          player.getName() +
-          ": " +
-          player.getPoints().toString() +
-          " points" +
-          "\n";
-    }
-    return s1;
-  }
-
   void addRoundData(List<Player> list, int round) {
     roundData[round] = list;
   }
@@ -59,6 +56,10 @@ class Model {
     return roundData[round];
   }
 
+  /**
+   * Returns the leaderboard at a specific round. Is used to show the 
+   * score at a given time in the game
+   */
   List<Player> getLeaderboardAtRound(int round) {
     List<Player> list = players;
     for (Player player in list) {
@@ -70,8 +71,29 @@ class Model {
     return list;
   }
 
+  /**
+   * Sorts the players by their ID 
+   * This is used to restore the order that the user typed in the player names
+   */
   void sortPlayersById(){
     players.sort((a, b) => a.getId().compareTo(b.getId()));
+  }
+
+  /**
+   * Used for debugging: overrides the default toString and makes it possible
+   * to print the current players and their points to the console
+   */
+  String toString() {
+    String s1 = "Number of players: " + players.length.toString() + "\n";
+    for (Player player in players) {
+      s1 = s1 +
+          player.getName() +
+          ": " +
+          player.getPoints().toString() +
+          " points" +
+          "\n";
+    }
+    return s1;
   }
 
 }
