@@ -6,6 +6,7 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:davoserjas/ColorPicker.dart';
+import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,7 +36,20 @@ class _MainPageState extends State<MainPage> {
    * is called when the user taps the bottomnavigation
    */
   void bottomNavigationTapped(int index) {
+    // setState(() {
+    //  currentIndex = index; 
+    // });
     pageController.jumpToPage(index);
+  }
+
+  Color getActiveIconColor(int index) {
+    if (index == 0) {
+      return colorPicker.getStartPageColor();
+    } else if (index == 1) {
+      return colorPicker.getRulesPageColor();
+    } else if (index == 2) {
+      return colorPicker.getSettingsPageColor();
+    }
   }
 
   @override
@@ -49,33 +63,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       backgroundColor: colorPicker.getPrimary(),
       body: body(),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: currentIndex,
-        showElevation: true,
-        onItemSelected: (index) {
-          bottomNavigationTapped(index);
-        },
-        items: [
-          BottomNavyBarItem(
-            icon: Icon(FeatherIcons.plus),
-            title: Text('Pointtæller'),
-            activeColor: colorPicker.getStartPageColor(),
-            inactiveColor: colorPicker.getPrimaryFont(),
-          ),
-          BottomNavyBarItem(
-            icon: Icon(FeatherIcons.bookOpen),
-            title: Text('Regler'),
-            activeColor: colorPicker.getRulesPageColor(),
-            inactiveColor: colorPicker.getPrimaryFont(),
-          ),
-          BottomNavyBarItem(
-            icon: Icon(FeatherIcons.settings),
-            title: Text('Indstillinger'),
-            activeColor: colorPicker.getSettingsPageColor(),
-            inactiveColor: colorPicker.getPrimaryFont(),
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottomNav(),
     );
   }
 
@@ -90,11 +78,68 @@ class _MainPageState extends State<MainPage> {
         StartPage(
           model: model,
         ),
-        RulesPage(needScaffoldAndBackButton: false,),
+        RulesPage(
+          needScaffoldAndBackButton: false,
+        ),
         SettingsPage(
           model: model,
         ),
       ],
+    );
+  }
+
+  Widget bottomNav() {
+    return BottomNavyBar(
+      selectedIndex: currentIndex,
+      showElevation: true,
+      onItemSelected: (index) {
+        bottomNavigationTapped(index);
+      },
+      items: [
+        BottomNavyBarItem(
+          icon: Icon(FeatherIcons.plus),
+          title: Text('Pointtæller'),
+          activeColor: colorPicker.getStartPageColor(),
+          inactiveColor: colorPicker.getPrimaryFont(),
+        ),
+        BottomNavyBarItem(
+          icon: Icon(FeatherIcons.bookOpen),
+          title: Text('Regler'),
+          activeColor: colorPicker.getRulesPageColor(),
+          inactiveColor: colorPicker.getPrimaryFont(),
+        ),
+        // BottomNavyBarItem(
+        //   icon: Icon(FeatherIcons.settings),
+        //   title: Text('Indstillinger'),
+        //   activeColor: colorPicker.getSettingsPageColor(),
+        //   inactiveColor: colorPicker.getPrimaryFont(),
+        // ),
+      ],
+    );
+  }
+
+  Widget bottomNavBar() {
+    return TitledBottomNavigationBar(
+      currentIndex: currentIndex,
+      indicatorColor: getActiveIconColor(currentIndex),
+      activeColor: getActiveIconColor(currentIndex),
+      items: [
+        TitledNavigationBarItem(
+          title: 'Home',
+          icon: FeatherIcons.plus,
+        ),
+        TitledNavigationBarItem(
+          title: 'Regler',
+          icon: FeatherIcons.bookOpen,
+        ),
+        TitledNavigationBarItem(
+          title: 'Indstillinger',
+          icon: FeatherIcons.settings,
+        ),
+      ],
+      onTap: (index) {
+        bottomNavigationTapped(index);
+      },
     );
   }
 }
