@@ -12,12 +12,13 @@ import 'package:davoserjas/ColorPicker.dart';
 class SetupGamePage extends StatefulWidget {
   final Model model;
 
-  const SetupGamePage({Key key, this.model,})
-      : super(key: key);
+  const SetupGamePage({
+    Key key,
+    this.model,
+  }) : super(key: key);
 
   @override
-  SetupGamePageState createState() =>
-      SetupGamePageState(model);
+  SetupGamePageState createState() => SetupGamePageState(model);
 }
 
 class SetupGamePageState extends State<SetupGamePage> {
@@ -28,7 +29,9 @@ class SetupGamePageState extends State<SetupGamePage> {
   int playerCount = 4;
   List<String> playerNames = List(5);
 
-  SetupGamePageState(this.model,);
+  SetupGamePageState(
+    this.model,
+  );
 
   void incrementPlayerCount() {
     setState(() {
@@ -147,26 +150,34 @@ class SetupGamePageState extends State<SetupGamePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         InkWell(
+          borderRadius: BorderRadius.all(Radius.circular(50)),
           onTap: () => reducePlayerCount(),
-          child: Icon(
-            FeatherIcons.minus,
-            color: colorPicker.getPrimaryFont(),
-            size: 35,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Icon(
+              FeatherIcons.minus,
+              color: colorPicker.getPrimaryFont(),
+              size: 35,
+            ),
           ),
         ),
         Container(
-          margin: EdgeInsets.all(15),
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Text(
             playerCount.toString(),
             style: TextStyle(fontSize: 45),
           ),
         ),
         InkWell(
+          borderRadius: BorderRadius.all(Radius.circular(50)),
           onTap: () => incrementPlayerCount(),
-          child: Icon(
-            FeatherIcons.plus,
-            color: colorPicker.getPrimaryFont(),
-            size: 35,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Icon(
+              FeatherIcons.plus,
+              color: colorPicker.getPrimaryFont(),
+              size: 35,
+            ),
           ),
         ),
       ],
@@ -206,8 +217,11 @@ class SetupGamePageState extends State<SetupGamePage> {
 
   Widget startButton() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.only(bottom: 20, top: 20),
       child: FlatButton(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         color: colorPicker.getStartPageColor(),
         disabledColor: colorPicker.getDisabledColor(),
         child: Text(

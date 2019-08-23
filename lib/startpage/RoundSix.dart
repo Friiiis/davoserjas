@@ -155,6 +155,7 @@ class RoundSixPageState extends State<RoundSixPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           InkWell(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
             onTap: () {
               Navigator.push(
                 context,
@@ -165,10 +166,13 @@ class RoundSixPageState extends State<RoundSixPage> {
                 ),
               );
             },
-            child: Icon(
-              FeatherIcons.bookOpen,
-              color: colorPicker.getRulesPageColor(),
-              size: 28,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                FeatherIcons.bookOpen,
+                color: colorPicker.getRulesPageColor(),
+                size: 28,
+              ),
             ),
           ),
           Text(
@@ -178,6 +182,7 @@ class RoundSixPageState extends State<RoundSixPage> {
             ),
           ),
           InkWell(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
             onTap: () {
               Navigator.push(
                 context,
@@ -189,10 +194,13 @@ class RoundSixPageState extends State<RoundSixPage> {
                 ),
               );
             },
-            child: Icon(
-              FeatherIcons.award,
-              color: colorPicker.getLeaderboardColor(),
-              size: 28,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                FeatherIcons.award,
+                color: colorPicker.getLeaderboardColor(),
+                size: 28,
+              ),
             ),
           ),
         ],
@@ -294,6 +302,7 @@ class RoundSixPageState extends State<RoundSixPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 onTap: () => reducePoints(player, round),
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -316,6 +325,7 @@ class RoundSixPageState extends State<RoundSixPage> {
                 ),
               ),
               InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 onTap: () => incrementPoints(player, round),
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -389,8 +399,10 @@ class RoundSixPageState extends State<RoundSixPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
+            margin: EdgeInsets.symmetric(vertical: 15),
             child: FlatButton(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               color: colorPicker.getStartPageColor(),
               disabledColor: colorPicker.getDisabledColor(),
               child: Text(

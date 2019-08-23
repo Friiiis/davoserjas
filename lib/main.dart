@@ -36,10 +36,10 @@ class _MainPageState extends State<MainPage> {
    * is called when the user taps the bottomnavigation
    */
   void bottomNavigationTapped(int index) {
-    // setState(() {
-    //  currentIndex = index; 
-    // });
-    pageController.jumpToPage(index);
+    setState(() {
+      currentIndex = index;
+      pageController.jumpToPage(index);
+    });
   }
 
   Color getActiveIconColor(int index) {
@@ -60,10 +60,14 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colorPicker.getPrimary(),
-      body: body(),
-      bottomNavigationBar: bottomNav(),
+    return Theme(
+      data: Theme.of(context)
+          .copyWith(accentColor: getActiveIconColor(currentIndex)),
+      child: Scaffold(
+        backgroundColor: colorPicker.getPrimary(),
+        body: body(),
+        bottomNavigationBar: bottomNavStandard(),
+      ),
     );
   }
 
@@ -88,7 +92,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget bottomNav() {
+  Widget bottomNavBobbles() {
     return BottomNavyBar(
       selectedIndex: currentIndex,
       showElevation: true,
@@ -108,17 +112,11 @@ class _MainPageState extends State<MainPage> {
           activeColor: colorPicker.getRulesPageColor(),
           inactiveColor: colorPicker.getPrimaryFont(),
         ),
-        // BottomNavyBarItem(
-        //   icon: Icon(FeatherIcons.settings),
-        //   title: Text('Indstillinger'),
-        //   activeColor: colorPicker.getSettingsPageColor(),
-        //   inactiveColor: colorPicker.getPrimaryFont(),
-        // ),
       ],
     );
   }
 
-  Widget bottomNavBar() {
+  Widget bottomNavTitled() {
     return TitledBottomNavigationBar(
       currentIndex: currentIndex,
       indicatorColor: getActiveIconColor(currentIndex),
@@ -131,15 +129,30 @@ class _MainPageState extends State<MainPage> {
         TitledNavigationBarItem(
           title: 'Regler',
           icon: FeatherIcons.bookOpen,
-        ),
-        TitledNavigationBarItem(
-          title: 'Indstillinger',
-          icon: FeatherIcons.settings,
-        ),
+        )
       ],
       onTap: (index) {
         bottomNavigationTapped(index);
       },
+    );
+  }
+
+  Widget bottomNavStandard() {
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      elevation: 5,
+      fixedColor: getActiveIconColor(currentIndex),
+      onTap: (index) {
+        bottomNavigationTapped(index);
+      },
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+            icon: Icon(FeatherIcons.home), title: Text('Spil')),
+        BottomNavigationBarItem(
+            icon: Icon(FeatherIcons.bookOpen), title: Text('Regler')),
+        BottomNavigationBarItem(
+            icon: Icon(FeatherIcons.info), title: Text('Info')),
+      ],
     );
   }
 }

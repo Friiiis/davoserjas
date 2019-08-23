@@ -28,10 +28,35 @@ class SettingsPageState extends State<SettingsPage> {
     return Column(
       children: <Widget>[
         Header(
-          title: "Indstillinger",
+          title: "Information",
           color: colorPicker.getSettingsPageColor(),
           fontColor: colorPicker.getSettingsPageFontColor(),
           showBackButton: false,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Lavet af Gustav Friis-Hansen.',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
+              Container(
+                height: 10,
+              ),
+              Text(
+                'friisdeveloper@gmail.com',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: colorPicker.getSettingsPageColor(),
+                ),
+              )
+            ],
+          ),
         ),
       ],
     );

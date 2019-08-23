@@ -41,7 +41,12 @@ class RulesPage extends StatelessWidget {
         Expanded(
           child: ListView(
             children: <Widget>[
-              paragraph("Generelle regler", "Lorem ipsum"),
+              paragraph(
+                  "Generelle regler",
+                  "Følgende regler er blot én version af Davoserjas blandt mange. Det er disse regler der bruges til pointtælling i denne app." +
+                      "\n\nSpillet går ud på at få så få point som muligt. Spillet er opdelt i 7 runder. De første seks runder spilles som normale kortspil, hvor hvert stik gives til spilleren, som har lagt det højeste kort. Man skal altid bekende kulør. Kongen er højst og esser er lavest. Hver runde har forskellige måder at tildele strafpoint på. De kan ses nedenfor." +
+                      "\n\nRunde 7 spilles som en kabale. Det første kort der må lægges på bordet er 7'ere. Derefter kan man bygge videre på kabalen, ved at lægge enten en 8'er i samme kulør over 7'eren eller en 6'er i samme kulør under 7'eren. Herefter fortsætter kabalen fra 8'eren op til kongen, og fra 6'eren ned til esset. Hvis man ikke har mulighed for at bygge videre på kabalen, melder man pas, hvilket giver strafpoint" +
+                      "\nDen spiller der bliver først færdig får 0 point. Pointene stiger jo dårligere position man får."),
               paragraph("Runde 1: ingen stik", "5 point per stik."),
               paragraph("Runde 2: ingen sorte kort", "5 point per sort kort."),
               paragraph("Runde 3: ingen ruder", "10 point per ruder."),
@@ -50,8 +55,8 @@ class RulesPage extends StatelessWidget {
                   "50 point for klør konge og det sidste stik i runden."),
               paragraph("Runde 6: alle tidligere runder",
                   "Alle ovenstående runder kombineret."),
-              paragraph(
-                  "Runde 7: kabalen", 'Hver gang en spiller melder "pas" tildeles spilleren 5 point. \nSpilleren der først har smidt alle sine kort får 0 point. Ved tre spillere er forskellen mellem slutpositionerne 50 point, ved fire spillere er forskellen 40 og ved fem spillere er forskellen 30.'),
+              paragraph("Runde 7: kabalen",
+                  'Hver gang en spiller melder "pas" tildeles spilleren 5 point. \nSpilleren der først har smidt alle sine kort får 0 point. Ved tre spillere er forskellen mellem slutpositionerne 50 point, ved fire spillere er forskellen 40 og ved fem spillere er forskellen 30.'),
             ],
           ),
         ),
@@ -68,13 +73,12 @@ class RulesPage extends StatelessWidget {
             width: double.infinity,
             margin: EdgeInsets.only(bottom: 5),
             child: Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
-            
+            ),
           ),
           Container(
             width: double.infinity,

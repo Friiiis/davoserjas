@@ -73,9 +73,12 @@ class GameStartedPageState extends State<GameStartedPage> {
       return () {
         if (currentRound == 7) {
           for (Player tempPlayer in tempPlayers) {
-            tempPlayer.setRoundPoint(7, rules.getRoundSevenPositionPoints(
-                tempPlayers.length,
-                roundSevenDropdownValues.indexOf(tempPlayer.getName()) + 1));
+            tempPlayer.setRoundPoint(
+                7,
+                rules.getRoundSevenPositionPoints(
+                    tempPlayers.length,
+                    roundSevenDropdownValues.indexOf(tempPlayer.getName()) +
+                        1));
           }
         }
 
@@ -83,7 +86,8 @@ class GameStartedPageState extends State<GameStartedPage> {
           if (tempPlayer != null) {
             for (Player player in model.players) {
               if (tempPlayer.getName() == player.getName()) {
-                player.setRoundPoint(currentRound, tempPlayer.getPoints() + tempPlayer.getRoundPoints(7));
+                player.setRoundPoint(currentRound,
+                    tempPlayer.getPoints() + tempPlayer.getRoundPoints(7));
               }
             }
           }
@@ -201,6 +205,7 @@ class GameStartedPageState extends State<GameStartedPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           InkWell(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
             onTap: () {
               Navigator.push(
                 context,
@@ -211,10 +216,13 @@ class GameStartedPageState extends State<GameStartedPage> {
                 ),
               );
             },
-            child: Icon(
-              FeatherIcons.bookOpen,
-              color: colorPicker.getRulesPageColor(),
-              size: 28,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                FeatherIcons.bookOpen,
+                color: colorPicker.getRulesPageColor(),
+                size: 28,
+              ),
             ),
           ),
           Text(
@@ -224,6 +232,7 @@ class GameStartedPageState extends State<GameStartedPage> {
             ),
           ),
           InkWell(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
             onTap: () {
               Navigator.push(
                 context,
@@ -235,10 +244,13 @@ class GameStartedPageState extends State<GameStartedPage> {
                 ),
               );
             },
-            child: Icon(
-              FeatherIcons.award,
-              color: colorPicker.getLeaderboardColor(),
-              size: 28,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Icon(
+                FeatherIcons.award,
+                color: colorPicker.getLeaderboardColor(),
+                size: 28,
+              ),
             ),
           ),
         ],
@@ -290,6 +302,7 @@ class GameStartedPageState extends State<GameStartedPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 onTap: () => reducePoints(player),
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -310,6 +323,7 @@ class GameStartedPageState extends State<GameStartedPage> {
                 ),
               ),
               InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
                 onTap: () => incrementPoints(player),
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -420,8 +434,11 @@ class GameStartedPageState extends State<GameStartedPage> {
 
   Widget navigationButtons() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 15),
       child: FlatButton(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         color: colorPicker.getStartPageColor(),
         disabledColor: colorPicker.getDisabledColor(),
         child: Text(

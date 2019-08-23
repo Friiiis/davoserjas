@@ -13,7 +13,8 @@ class Leaderboard extends StatelessWidget {
   ColorPicker colorPicker = ColorPicker();
   int additionalFirstPlaces;
 
-  Leaderboard({Key key, this.model, this.round, this.showHomeButton}) : super(key: key);
+  Leaderboard({Key key, this.model, this.round, this.showHomeButton})
+      : super(key: key);
 
   void getLeaderboard() {
     leaderboard = model.getLeaderboardAtRound(round);
@@ -23,10 +24,10 @@ class Leaderboard extends StatelessWidget {
   }
 
   //checks if more than one person is first place
-  int numberOfAdditionalFirstPlaces(){
+  int numberOfAdditionalFirstPlaces() {
     int firstPlaces = 0;
     for (var i = 1; i < leaderboard.length; i++) {
-      if (leaderboard[i].getPoints() == leaderboard[i-1].getPoints()) {
+      if (leaderboard[i].getPoints() == leaderboard[i - 1].getPoints()) {
         firstPlaces++;
       } else {
         break;
@@ -132,10 +133,13 @@ class Leaderboard extends StatelessWidget {
     }
   }
 
-  Widget homeButton(BuildContext context){
+  Widget homeButton(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 15),
       child: FlatButton(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         color: colorPicker.getStartPageColor(),
         disabledColor: colorPicker.getDisabledColor(),
         child: Text(
@@ -151,7 +155,6 @@ class Leaderboard extends StatelessWidget {
           }
         },
       ),
-    ); 
+    );
   }
-
 }
