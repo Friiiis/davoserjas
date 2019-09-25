@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:davoserjas/ColorPicker.dart';
 import 'package:titled_navigation_bar/titled_navigation_bar.dart';
+import 'package:minimalistic_bottom_navigation/minimalistic_bottom_navigation.dart';
 
 void main() => runApp(MyApp());
 
@@ -66,7 +67,7 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         backgroundColor: colorPicker.getPrimary(),
         body: body(),
-        bottomNavigationBar: bottomNavStandard(),
+        bottomNavigationBar: minimalisticBottomNav(),
       ),
     );
   }
@@ -152,6 +153,34 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(FeatherIcons.bookOpen), title: Text('Regler')),
         BottomNavigationBarItem(
             icon: Icon(FeatherIcons.info), title: Text('Info')),
+      ],
+    );
+  }
+
+  Widget minimalisticBottomNav(){
+    return MinimalisticBottomBar(
+      iconOpacity: 0.2,
+      height: 60,
+      currentIndex: currentIndex,
+      onIndexChanged: (index) {
+        bottomNavigationTapped(index);
+      },
+      items: [
+        MinimalisticBottomBarItem(
+          icon: FeatherIcons.home,
+          text: 'Nyt spil',
+          color: colorPicker.getStartPageColor(),
+        ),
+        MinimalisticBottomBarItem(
+          icon: FeatherIcons.bookOpen,
+          text: 'Regler',
+          color: colorPicker.getRulesPageColor(),
+        ),
+        MinimalisticBottomBarItem(
+          icon: FeatherIcons.info,
+          text: 'Info',
+          color: colorPicker.getSettingsPageColor(),
+        ),
       ],
     );
   }
